@@ -70,7 +70,7 @@ public class ServiceV2Test {
 	}
 	
 	/**
-	 * 原生sql的分页查询
+	 * 原生sql的分页
 	 */
 	@Test
 	public void testListPage2() {
