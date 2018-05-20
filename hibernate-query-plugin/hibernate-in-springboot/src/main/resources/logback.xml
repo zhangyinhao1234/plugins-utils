@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration scan="true" scanPeriod="60 seconds" debug="false">
+<!-- 	<include resource="org/springframework/boot/logging/logback/base.xml" /> -->
+	<contextName>logback</contextName>
+	<!-- 记录文件到特定目录 -->
+<!-- 	<property name="log.path" value="E:\\test\\logback.log" /> -->
+	<property name="APPID" value="spring-boot" />
+	<property name="log.path" value="C:/var/taocaimall/logs/info/${APPID}-logback.log" />
+	<property name="backlog.path" value="C:/var/taocaimall/logs/info/" />
+
+
+	<!--输出到控制台 -->
+	<appender name="console" class="ch.qos.logback.core.ConsoleAppender">
+		<filter class="ch.qos.logback.classic.filter.ThresholdFilter">
+			<level>debug</level>
+		</filter>
+		<encoder>
+			<pattern>%d{HH:mm:ss.SSS} %contextName [%thread] %-5level %logger{36}- %msg%n</pattern>
+		</encoder>
+	</appender>
+	<appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+        <!--encoder 默认配置为PatternLayoutEncoder-->
+        <encoder>
+            <pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} %-5level [%thread] %logger Line:%-3L - %msg%n</pattern>
+            <charset>utf-8</charset>
+        </encoder>
+        <!--此日志appender是为开发使用，只配置最底级别，控制台输出的日志级别是大于或等于此级别的日志信息-->
+        <filter class="ch.qos.logback.classic.filter.ThresholdFilter">
+            <level>debug</level>
+        </filter>
+    </appender>
+	
+
+	
+	<logger name="net.tcm" level="DEBUG"/>
+	<root level="info">
+		<appender-ref ref="STDOUT" />
+	</root>
+	
+
+	
+	
+</configuration>

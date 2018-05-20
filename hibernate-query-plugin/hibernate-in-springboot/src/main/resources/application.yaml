@@ -1,0 +1,50 @@
+spring:
+  application:
+    name: hibernate-server
+
+server:
+  port: 8080
+  maxHttpHeaderSize: 10240000
+
+# eureka注册中心
+#eureka:
+#  client:
+#    serviceUrl:
+#      defaultZone: http://127.0.0.1:8001/eureka/
+
+management.security.enabled: false
+
+
+
+################数据源配置######################
+spring.datasource.type: com.alibaba.druid.pool.DruidDataSource
+spring.datasource.url: jdbc:mysql://127.0.0.1:3306/dump20161027?createDatabaseIfNotExist=true&amp;useUnicode=true&amp;characterEncoding=utf-8
+spring.datasource.username: root
+spring.datasource.password: 123456
+spring.datasource.driverClassName: com.mysql.jdbc.Driver
+spring.datasource.maxActive: 20
+#只读库地址
+spring.datasource.readurl: jdbc:mysql://127.0.0.1:3306/dump20161027?useUnicode=true&amp;characterEncoding=utf-8
+
+#hibernate
+spring.jpa.properties.hibernate.dialect: com.binpo.plugin.hibernate.query.page.generic.SystemMySQL5Dialect
+spring.jpa.properties.hibernate.show_sql: true
+spring.jpa.properties.hibernate.format_sql: true
+spring.jpa.properties.hibernate.cache.use_query_cache: false
+spring.jpa.properties.hibernate.cache.use_second_level_cache: false
+spring.jpa.properties.hibernate.hbm2ddl.auto: update
+spring.jpa.properties.hibernate.memcached.servers: 127.0.0.1:11211
+spring.jpa.properties.hibernate.memcached.cacheTimeSeconds: 1200
+
+#1.2 使用hibernate3.6和以上版本设置为1.6
+spring.jpa.properties.hibernate.cache.memcached.version: 1.6
+#id策略配置(可实现 EntityIdWorker 接口配置自定义的id生成规则，默认的为 snowflake)
+spring.idworker.strategy: 
+#hibernate entity映射扫描包,多个用,隔开
+spring.jpa.properties.hibernate.pojoScan: com.binpo.pojo,com.binpo.other
+
+
+
+
+
+
