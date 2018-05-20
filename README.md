@@ -8,16 +8,13 @@
 
 封装了hibernate的基础的查询，保存，更新，分页查询。基础配置如下：
 
-`数据库访问配置`
-`主数据源，默认的`
 `spring.datasource.type=com.alibaba.druid.pool.DruidDataSource`
 `spring.datasource.url=jdbc:mysql://127.0.0.1:3306/dump20161027?createDatabaseIfNotExist=true&amp;useUnicode=true&amp;characterEncoding=utf-8`
 `spring.datasource.username= root`
 `spring.datasource.password= 123456`
 `spring.datasource.driverClassName = com.mysql.jdbc.Driver`
 `spring.datasource.maxActive=20`
-`只读库地址`
-`spring.datasource.readurl=jdbc:mysql://127.0.0.1:3306/dump20161027?useUnicode=true&amp;characterEncoding=utf-8`
+`spring.datasource.readurl=jdbc:mysql://127.0.0.1:3306/dump20161027?useUnicode=true&amp;characterEncoding=utf-8 #只读地址`
 `hibernate`
 `spring.jpa.properties.hibernate.dialect=com.binpo.plugin.hibernate.query.page.generic.SystemMySQL5Dialect`
 `spring.jpa.properties.hibernate.show_sql=true`
@@ -25,15 +22,12 @@
 `spring.jpa.properties.hibernate.cache.use_query_cache=false`
 `spring.jpa.properties.hibernate.cache.use_second_level_cache=false`
 `spring.jpa.properties.hibernate.hbm2ddl.auto=update`
-`memcached 配置`
-`spring.jpa.properties.hibernate.memcached.servers=127.0.0.1:11211`
+`spring.jpa.properties.hibernate.memcached.servers=127.0.0.1:11211 #memcached二级缓存地址` 
 `spring.jpa.properties.hibernate.memcached.cacheTimeSeconds=1200`
 
-`1.2 使用hibernate3.6和以上版本设置为1.6`
 `spring.jpa.properties.hibernate.cache.memcached.version=1.6`
 `spring.redis.hosts=node1:127.0.0.1:6379`
-`id策略配置(可实现 EntityIdWorker 接口配置自定义的id生成规则，默认的为 snowflake)`
-`spring.idworker.strategy=`
+`spring.idworker.strategy= #id策略配置(可实现 EntityIdWorker 接口配置自定义的id生成规则，默认的为 snowflake)` 
 `spring.jpa.properties.hibernate.pojoScan=com.binpo.plugin.hibernate.pojo,com.binpo.other.pojo`
 
 如果需要使用[hibernate-memcached](https://github.com/zhangyinhao1234/hibernate-memcached) 实现hibernate的二级缓存，需要对hibernate-memcached进行打包，实现二级缓存。
@@ -104,3 +98,6 @@
 		IPageList list = this.iBIExampleService.list(pageQuery);
 		logger.debug(JSON.toJSONString(list));
 	}
+#### 在spring boot中使用
+
+[hibernate-in-springboot](https://github.com/zhangyinhao1234/plugins-utils/tree/master/hibernate-query-plugin/hibernate-in-springboot)
