@@ -4,7 +4,7 @@
 
 ### 组件描述
 
-添加依赖
+mvn clean install 打包后添加依赖
 
 	<dependency>
 		<groupId>com.github.zhangyinhao1234.plugin</groupId>
