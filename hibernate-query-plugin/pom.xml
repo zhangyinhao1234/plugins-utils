@@ -1,0 +1,33 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	
+	<parent>
+		<artifactId>plugins-utils</artifactId>
+		<groupId>com.github.zhangyinhao1234.plugin</groupId>
+		<version>0.0.1-SNAPSHOT</version>
+		<relativePath>../pom.xml</relativePath>
+	</parent>
+	<modelVersion>4.0.0</modelVersion>
+
+	<artifactId>hibernate-query</artifactId>
+	<packaging>pom</packaging>
+
+	<name>hibernate-query</name>
+	<url>http://maven.apache.org</url>
+
+	<repositories>
+		<repository>
+			<id>alimaven</id>
+			<name>aliyun maven</name>
+			<url>http://maven.aliyun.com/nexus/content/groups/public/</url>
+		</repository>
+	</repositories>
+
+	<modules>
+        <module>hibernate-id-entity</module>
+		<module>hibernate-in-springboot</module>
+		<module>hibernate-query-plugin</module>
+	</modules>
+
+</project>

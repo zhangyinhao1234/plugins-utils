@@ -1,25 +1,17 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-	<parent>
-		<artifactId>hibernate-query</artifactId>
-		<groupId>com.github.zhangyinhao1234.plugin</groupId>
-		<version>0.0.1-SNAPSHOT</version>
-		<relativePath>../pom.xml</relativePath>
-	</parent>
 	<modelVersion>4.0.0</modelVersion>
 
-	<artifactId>hibernate-id-entity</artifactId>
-	<packaging>jar</packaging>
+	<groupId>com.github.zhangyinhao1234.plugin</groupId>
+	<artifactId>plugins-utils</artifactId>
+	<version>0.0.1-SNAPSHOT</version>
+	<packaging>pom</packaging>
 
-	<name>hibernate-id-entity</name>
+	<name>hibernate-query-plugin</name>
 	<url>http://maven.apache.org</url>
-	<properties>
-		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-	</properties>
 
 	<repositories>
-
 		<repository>
 			<id>alimaven</id>
 			<name>aliyun maven</name>
@@ -27,24 +19,36 @@
 		</repository>
 	</repositories>
 
+	<properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<junit.version>4.12</junit.version>
+		<slf4j-log4j12.version>1.6.4</slf4j-log4j12.version>
+	</properties>
+
 
 	<dependencies>
+		<!-- 测试依赖 -->
 		<dependency>
-			<groupId>org.hibernate.javax.persistence</groupId>
-			<artifactId>hibernate-jpa-2.1-api</artifactId>
-			<version>1.0.0.Final</version>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<version>${junit.version}</version>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>slf4j-log4j12</artifactId>
+			<version>${slf4j-log4j12.version}</version>
+			<scope>test</scope>
 		</dependency>
 	</dependencies>
 
+	<modules>
+        <module>hibernate-query-plugin</module>
+		<module>wechat-plugin</module>
+		
+	</modules>
+
 	<build>
-		<resources>
-			<resource>
-				<directory>src/main/resources</directory>
-				<includes>
-					<include>**/*.*</include>
-				</includes>
-			</resource>
-		</resources>
 		<plugins>
 			<plugin>
 				<artifactId>maven-compiler-plugin</artifactId>
@@ -86,6 +90,7 @@
 			</plugin>
 		</plugins>
 	</build>
+
 
 
 </project>
