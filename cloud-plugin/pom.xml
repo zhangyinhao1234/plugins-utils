@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<parent>
+		<groupId>com.github.zhangyinhao1234.plugin</groupId>
+		<artifactId>plugins-utils</artifactId>
+		<version>0.0.1-SNAPSHOT</version>
+	</parent>
+	<artifactId>cloud-plugin</artifactId>
+	<packaging>pom</packaging>
+	<name>cloud-plugin</name>
+	<url>http://maven.apache.org</url>
+	<modules>
+		<module>cloud-plugin-norm</module>
+		<module>cloud-plugin-qcloud</module>
+		<module>cloud-plugin-aws</module>
+	</modules>
+
+	<properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<maven.compiler.source>1.8</maven.compiler.source>
+		<maven.compiler.target>1.8</maven.compiler.target>
+		<java.version>1.8</java.version>
+
+		<com.qcloud.version>4.6</com.qcloud.version>
+		<fastjson.version>1.2.8</fastjson.version>
+		<aws-java-sdk.version>1.11.335</aws-java-sdk.version>
+		<joda-time.version>2.9.6</joda-time.version>
+		<jackson-databind.version>2.8.5</jackson-databind.version>
+		<commons-logging.version>1.1.1</commons-logging.version>
+	</properties>
+
+	<dependencyManagement>
+		<dependencies>
+
+			<!-- 腾讯云 -->
+			<dependency>
+				<groupId>com.qcloud</groupId>
+				<artifactId>cos_api</artifactId>
+				<version>${com.qcloud.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>com.alibaba</groupId>
+				<artifactId>fastjson</artifactId>
+				<version>${fastjson.version}</version>
+			</dependency>
+
+			<!-- aws -->
+			<dependency>
+				<groupId>com.amazonaws</groupId>
+				<artifactId>aws-java-sdk</artifactId>
+				<version>${aws-java-sdk.version}</version>
+				<scope>provided</scope>
+			</dependency>
+			<dependency>
+				<groupId>joda-time</groupId>
+				<artifactId>joda-time</artifactId>
+				<version>${joda-time.version}</version>
+				<scope>provided</scope>
+			</dependency>
+			<dependency>
+				<groupId>com.fasterxml.jackson.core</groupId>
+				<artifactId>jackson-databind</artifactId>
+				<version>${jackson-databind.version}</version>
+				<scope>provided</scope>
+			</dependency>
+			<dependency>
+				<groupId>commons-logging</groupId>
+				<artifactId>commons-logging</artifactId>
+				<version>${commons-logging.version}</version>
+			</dependency>
+
+			<dependency>
+				<groupId>com.github.zhangyinhao1234.plugin</groupId>
+				<artifactId>cloud-plugin-aws</artifactId>
+				<version>${project.version}</version>
+			</dependency>
+
+			<dependency>
+				<groupId>com.github.zhangyinhao1234.plugin</groupId>
+				<artifactId>cloud-plugin-norm</artifactId>
+				<version>${project.version}</version>
+			</dependency>
+
+		</dependencies>
+	</dependencyManagement>
+</project>

@@ -7,25 +7,12 @@
 		<version>0.0.1-SNAPSHOT</version>
 		<relativePath>../pom.xml</relativePath>
 	</parent>
-	
 	<modelVersion>4.0.0</modelVersion>
-
-	<groupId>com.github.zhangyinhao1234.plugin</groupId>
 	<artifactId>wechat-plugin</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
 	<packaging>jar</packaging>
 
 	<name>wechat-plugin</name>
 	<url>http://maven.apache.org</url>
-
-	<repositories>
-
-		<repository>
-			<id>alimaven</id>
-			<name>aliyun maven</name>
-			<url>http://maven.aliyun.com/nexus/content/groups/public/</url>
-		</repository>
-	</repositories>
 
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
