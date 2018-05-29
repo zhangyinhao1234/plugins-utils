@@ -1,18 +1,17 @@
-package com.github.zhangyinhao1234.plugin.wechat_plugin;
+# 插件使用说明
 
-import java.util.HashMap;
-import java.util.Map;
+## wechat-plugin
 
-import com.binpo.plugin.wechat.mp.template.WeChatTMessage;
-import com.binpo.plugin.wechat.mp.template.bean.TMessage;
-import com.binpo.plugin.wechat.mp.template.bean.TValue;
-import com.binpo.plugin.wechat.mp.token.WeChatAccessToken;
-import com.binpo.plugin.wechat.mp.token.bean.AccessToken;
+​	对微信公众号中的授权进行处理，可以生成针对统一域名的授权转发，从重定向的地址中获取的用户信息，微信会传递一个code回来，通过code获取accessToken，来获取用户的信息。
 
-public class TemplateMsgTest {
+​	微信公众号的模板消息发送，提供openid，模板id，appid，和appSecret，入参调用方法即可发送模板消息。
 
-	public static void main(String[] a) {
-		
+
+
+### 代码示例
+
+#### 发送模板消息
+
 		// 密钥
 		String appSecret = "";
 		// 公众号号的appid
@@ -26,5 +25,3 @@ public class TemplateMsgTest {
 		TMessage msg = new TMessage(touser, templateId);
 		msg.addParams("first", "优惠券提醒","keyword1", "商品优惠券","keyword2", "优惠券2018-05-09","remark", "优惠券remark");
 		WeChatTMessage.sendMessage(msg, accessToken);
-	}
-}

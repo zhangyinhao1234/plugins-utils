@@ -47,6 +47,26 @@ public class TMessage {
     	this.data.put(key, new TValue(value));
     }
     
+    public void addParams(String k1,String v1,String k2,String v2) {
+    	this.data.put(k1, new TValue(v1));
+    	this.data.put(k2, new TValue(v2));
+    }
+
+    public void addParams(String k1,String v1,String k2,String v2,
+    		String k3,String v3) {
+    	this.data.put(k1, new TValue(v1));
+    	this.data.put(k2, new TValue(v2));
+    	this.data.put(k3, new TValue(v3));
+    }
+    
+    public void addParams(String k1,String v1,String k2,String v2,
+    		String k3,String v3,String k4,String v4) {
+    	this.data.put(k1, new TValue(v1));
+    	this.data.put(k2, new TValue(v2));
+    	this.data.put(k3, new TValue(v3));
+    	this.data.put(k4, new TValue(v4));
+    }
+    
     public TMessage(String touser,String template_id,Map<String,TValue> data){
         this.template_id = template_id;
         this.touser = touser;
