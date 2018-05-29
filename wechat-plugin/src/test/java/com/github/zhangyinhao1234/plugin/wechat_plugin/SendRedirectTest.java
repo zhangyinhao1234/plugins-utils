@@ -14,8 +14,7 @@ public class SendRedirectTest {
 		//中间服务器，用来处理我们拼接好的参数，在这个中间服务器上会重定向到
 		String fullNotifyUrl = "http://u.taocai.mobi/taocaimall/wechat_redirec_center.json";
 		String state = "1234";// 随机数
-		String appId = "wx20692ca18ee4d117";
-		// appId = "wx8ade44b99a540fd9";
+		String appId = "";
 		String sessionId = "adfsdkfsdkjnfjsdk";
 		Map<String, String> webParams = new HashMap<>();
 		String stateKey = WeChatOpenWebUtil.getstateKey(sessionId);

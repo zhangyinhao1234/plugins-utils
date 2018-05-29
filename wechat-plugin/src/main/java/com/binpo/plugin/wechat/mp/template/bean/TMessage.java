@@ -38,6 +38,15 @@ public class TMessage {
         this.template_id = template_id;
         this.touser = touser;
     }
+    /**
+     * 添加参数
+     * @param key
+     * @param value
+     */
+    public void addParams(String key,String value) {
+    	this.data.put(key, new TValue(value));
+    }
+    
     public TMessage(String touser,String template_id,Map<String,TValue> data){
         this.template_id = template_id;
         this.touser = touser;
