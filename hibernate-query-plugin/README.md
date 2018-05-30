@@ -2,6 +2,22 @@
 
 ## hibernate-query-plugin
 
+## Versions
+
+### master
+
+1. 基于hibernate-5.2.17.Final进行编译
+2. 使用[二级缓存](https://github.com/zhangyinhao1234/hibernate-memcached/tree/hibernate-memcached-1.7-5.2.17)请进行  mvn clean install 使用 hibernate-memcached-1.7-5.2.17 版本的二级缓存包
+3. hibernate 5.0.x和hibernate5.2.x配置的调整原来的  spring.jpa.properties.hibernate.hbm2ddl.auto=update调整为：spring.jpa.properties.hibernate.hbm2ddl.auto=true/false。hibernate内部配置hibernate.hbm2ddl.auto调整为配置hbm2ddl.auto
+
+### brahch：5.0.12.Final
+
+1. 基于hibernate-5.0.12.Final进行编译
+
+2. 使用[二级缓存](https://github.com/zhangyinhao1234/hibernate-memcached/tree/hibernate-memcached-1.7-5.0.12)请进行mvn clean install 使用 hibernate-memcached-1.7-5.0.12 版本的二级缓存包
+
+   ### 
+
 ### 组件描述
 
 打包：mvn clean install 
@@ -80,7 +96,7 @@
 		List queryForList = this.iBIExampleService.queryForList(sql, params);
 		logger.debug(queryForList);
 	}
-
+	
 	public void testListPage() {
 		BaseQueryObject qb = new BaseQueryObject("1");
 		Map params = new HashMap<>();
