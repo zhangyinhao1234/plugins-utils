@@ -54,6 +54,16 @@ public class ServiceV2Test {
 		logger.debug(queryForList);
 	}
 	
+	
+	@Test
+	public void test2() {
+		BIExample objByProperty = iBIExampleService.getObjByProperty("name", "zhang");
+		System.out.println(JSON.toJSONString(objByProperty));
+		
+		BIExample objByProperty2 = iBIExampleService.getObjByProperty("name", "zhang");
+		System.out.println(JSON.toJSONString(objByProperty2));
+	}
+	
 	/**
 	 * 分页插叙
 	 */

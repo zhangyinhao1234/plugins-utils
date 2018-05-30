@@ -238,7 +238,7 @@ public class GenericEntityDaoConfig {
         }
         jpaProperties.put("hibernate.use_sql_comments", booleanFalseStr);
         jpaProperties.put("hibernate.generate_statistics", booleanFalseStr);
-        jpaProperties.put("hibernate.hbm2ddl.auto", hbm2ddlAuto);
+        jpaProperties.put("hbm2ddl.auto", hbm2ddlAuto);
         jpaProperties.put("foreign-key", "none");
         jpaProperties.put("hibernate.format_sql", format_sql);
         entityManagerFactory.setJpaPropertyMap(jpaProperties);

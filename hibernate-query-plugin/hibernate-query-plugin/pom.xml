@@ -34,10 +34,10 @@
 		<druid.version>1.0.14</druid.version>
 		<mysql-connector-java.version>5.1.35</mysql-connector-java.version>
 		<slf4j-api.version>1.6.4</slf4j-api.version>
-		<hibernate.version>5.0.12.Final</hibernate.version>
+		<hibernate.version>5.2.17.Final</hibernate.version>
 		<junit.version>4.12</junit.version>
 		<slf4j-log4j12.version>1.6.4</slf4j-log4j12.version>
-		<hibernate5-memcached.version>1.8-5.0.12-SNAPSHOT</hibernate5-memcached.version>
+		<hibernate5-memcached.version>1.7-5.2.17-SNAPSHOT</hibernate5-memcached.version>
 		<aspectjrt.version>1.8.10</aspectjrt.version>
 		<aspectjweaver.version>1.8.10</aspectjweaver.version>
 		<aopalliance.version>1.0</aopalliance.version>
@@ -47,6 +47,13 @@
 
 
 	<dependencies>
+		<!-- 如果想使用二级缓存请下载 ： https://github.com/zhangyinhao1234/hibernate-memcached.git 使用hibernate想对应的版本的二级缓存包，进行mvn clean install -->
+		<dependency>
+			<groupId>com.googlecode</groupId>
+			<artifactId>hibernate5-memcached</artifactId>
+			<version>${hibernate5-memcached.version}</version>
+		</dependency>
+		
 		<dependency>
 			<groupId>com.github.zhangyinhao1234.plugin</groupId>
 			<artifactId>hibernate-id-entity</artifactId>
