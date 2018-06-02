@@ -30,8 +30,8 @@ public class QCloudTest {
     private ObjClient objClient;
     
     
-//    @Resource(name="sellerBalance")
-//    private IMessageQueue queue;
+    @Resource(name="testqueue")
+    private IMessageQueue queue;
     
     private Log logger = LogFactory.getLog(QCloudTest.class);
 
@@ -54,8 +54,8 @@ public class QCloudTest {
     @Test
     public void pushMessage() {
         Message message = new Message("hii");
-//        MessageResult sendMessage = queue.sendMessage(message);
-//        logger.debug(JSON.toJSONString(sendMessage));
+        MessageResult sendMessage = queue.sendMessage(message);
+        logger.debug(JSON.toJSONString(sendMessage));
     }
     /**
      * 
@@ -64,8 +64,8 @@ public class QCloudTest {
      */
     @Test
     public void readMessage() {
-//        List<Message> receiveMessage = queue.receiveMessage(10);
-//        logger.debug(JSON.toJSONString(receiveMessage));
+        List<Message> receiveMessage = queue.receiveMessage(10);
+        logger.debug(JSON.toJSONString(receiveMessage));
     }
 
 }

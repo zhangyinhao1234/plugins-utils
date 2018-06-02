@@ -48,17 +48,6 @@ public class CMQQueueClient implements IMessageQueue{
 	
 	private ISecretKey key ;
 	
-	public CMQQueueClient(){
-		
-	}
-	/**
-	 * 默认广州区 采用默认内网 http
-	 * @param queueName 队列名
-	 */
-	public CMQQueueClient(String queueName,ISecretKey key){
-		this.queueName = queueName;
-		this.key = key;
-	}
 	/**
 	 * 采用默认内网 http
 	 * @param queueName 队列名
@@ -67,9 +56,13 @@ public class CMQQueueClient implements IMessageQueue{
 		this.queueName = queueName;
 		this.Region = region.toString();
 		this.key = key;
+		URL = "cmq-queue-"+Region+".api.tencentyun.com/v2/index.php";
+        cmq_url="cmq-queue-"+Region+".api.qcloud.com/v2/index.php";
 	}
 	
 	public CMQQueueClient(QCloudRegion region,String queueName,QcloudHttpType httptype,ISecretKey key){
+	    URL = "cmq-queue-"+Region+".api.tencentyun.com/v2/index.php";
+	    cmq_url="cmq-queue-"+Region+".api.qcloud.com/v2/index.php";
 		this.queueName = queueName;
 		this.Region = region.toString();
 		if(httptype.equals(QcloudHttpType.https)){
