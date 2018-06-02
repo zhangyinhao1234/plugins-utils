@@ -20,7 +20,7 @@
 		<awsjavasdk.version>1.11.125</awsjavasdk.version>
 	</properties>
 	<dependencies>
-	
+
 		<dependency>
 			<groupId>com.github.zhangyinhao1234.plugin</groupId>
 			<artifactId>cloud-plugin-norm</artifactId>
@@ -67,6 +67,12 @@
 			<artifactId>spring-context</artifactId>
 			<version>${spring.version}</version>
 			<scope>compile</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-test</artifactId>
+			<version>${spring.version}</version>
+			<scope>test</scope>
 		</dependency>
 		<dependency>
 			<groupId>org.apache.httpcomponents</groupId>

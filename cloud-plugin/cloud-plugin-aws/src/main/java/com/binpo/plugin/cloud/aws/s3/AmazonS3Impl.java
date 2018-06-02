@@ -59,18 +59,11 @@ public class AmazonS3Impl implements ObjClient {
     public AmazonS3Impl(String bucketName,ISecretKey key) {
         this.key = key;
         this.bucketName = bucketName;
+        rootPath = "https://s3.cn-north-1.amazonaws.com.cn/" + this.bucketName + "/";
         init();
     }
 
-    public AmazonS3Impl(ISecretKey key) {
-        this.key = key;
-        init();
-    }
 
-    public AmazonS3Impl(String bucketName) {
-        this.bucketName = bucketName;
-        init();
-    }
 
     private void init() {
         AWSCredentials credentials = new BasicAWSCredentials(key.getSecretId(), key.getSecretKey());

@@ -15,6 +15,10 @@ import com.binpo.plugin.cloud.storage.ObjClient;
 @Configuration
 @Component
 public class AWSConfig {
+	
+	@Value("${aws.default.bucketName}")
+	private String bucketName;
+	
     @Value("${aws.key.secretId}")
     private String secretId;
 
@@ -23,7 +27,7 @@ public class AWSConfig {
 
     @Bean
     public ObjClient s3client() {
-        AmazonS3Impl amazonS3Impl = new AmazonS3Impl(awsSecretKey());
+        AmazonS3Impl amazonS3Impl = new AmazonS3Impl(bucketName,awsSecretKey());
         AWSFactory.setS3Client(amazonS3Impl);
         return amazonS3Impl;
     }
