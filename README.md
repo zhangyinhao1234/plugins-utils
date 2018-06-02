@@ -15,3 +15,12 @@
 ​	微信公众号的模板消息发送，提供openid，模板id，appid，和appSecret，入参调用方法即可发送模板消息。
 
 [代码示例](https://github.com/zhangyinhao1234/plugins-utils/tree/master/wechat-plugin)
+
+
+
+## cloud-plugin
+
+​	对AWS和Qcloud的消息队列，订阅通知，文件上传设置了统一的接口，分别对定义的接口进行了实现，方便在项目中直接使用文件上传，消息发送订阅。可以在一个项目中定义多个文件上传的桶，消息队列，可以同时使用AWS和Qcloud的服务，通过接口的方式，方便日后进行实现的替换（例如从AWS迁移到腾讯云）
+
+[代码示例](https://github.com/zhangyinhao1234/plugins-utils/tree/master/cloud-plugin)
+
