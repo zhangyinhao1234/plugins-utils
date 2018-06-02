@@ -35,6 +35,7 @@ import com.qcloud.cos.request.GetFileLocalRequest;
 import com.qcloud.cos.request.StatFileRequest;
 import com.qcloud.cos.request.UploadFileRequest;
 import com.qcloud.cos.sign.Credentials;
+
 /**
  * 
  * 腾讯云的对象存储实现
@@ -55,34 +56,21 @@ public class COSClient implements ObjClient {
 
     private long appId;
 
-    private ISecretKey key ;
+    private ISecretKey key;
 
     private Log logger = LogFactory.getLog(getClass());
-    
-    private String index="/img/upload";
+
+    private String index = "/img/upload";
 
     private final int successCode = 0;
-    
-    
-    public COSClient(ISecretKey key) {
-    	this.key = key;
-        createcosClient();
-    }
-    public COSClient(QCloudRegion Region, String bucketName, long appId,ISecretKey key) {
+
+    public COSClient(QCloudRegion Region, String bucketName, long appId, ISecretKey key) {
         this.appId = appId;
         this.Region = Region.toString();
         this.bucketName = bucketName;
         this.key = key;
         createcosClient();
     }
-
-    public COSClient(QCloudRegion Region, String bucketName, long appId) {
-        this.appId = appId;
-        this.Region = Region.toString();
-        this.bucketName = bucketName;
-        createcosClient();
-    }
-
 
     private void createcosClient() {
         // 初始化秘钥信息
@@ -129,14 +117,14 @@ public class COSClient implements ObjClient {
     }
 
     @Override
-    public ObjectUploadResult uploadObject(String cloudPath, File file) throws FileNotFoundException,
-            IOException {
+    public ObjectUploadResult uploadObject(String cloudPath, File file)
+            throws FileNotFoundException, IOException {
         cloudPath = formatPathForFile(cloudPath);
         return uploadObject(cloudPath, new FileInputStream(file));
     }
-    
-    private static File inToFile(InputStream in,String ext) throws IOException {
-        File createTempFile = File.createTempFile(UUID.randomUUID().toString(), "."+ext);
+
+    private static File inToFile(InputStream in, String ext) throws IOException {
+        File createTempFile = File.createTempFile(UUID.randomUUID().toString(), "." + ext);
         FileOutputStream fos = new FileOutputStream(createTempFile);
         byte[] buffer = new byte[1024];
         int len = 0;
@@ -147,24 +135,26 @@ public class COSClient implements ObjClient {
         fos.close();
         return createTempFile;
     }
-    
 
     @Override
     public ObjectUploadResult uploadObject(String cloudPath, InputStream in) throws IOException {
         cloudPath = formatPathForFile(cloudPath);
-//        File inToFile = inToFile(in, cloudPath.substring(cloudPath.lastIndexOf(".")+1));
+        // File inToFile = inToFile(in,
+        // cloudPath.substring(cloudPath.lastIndexOf(".")+1));
         byte[] byt = new byte[in.available()];
         in.read(byt);
         UploadFileRequest uploadFileRequest = new UploadFileRequest(bucketName, cloudPath, byt);
-//        UploadFileRequest uploadFileRequest = new UploadFileRequest(bucketName,cloudPath,inToFile.getPath());
+        // UploadFileRequest uploadFileRequest = new
+        // UploadFileRequest(bucketName,cloudPath,inToFile.getPath());
         uploadFileRequest.setInsertOnly(InsertOnly.OVER_WRITE);// 覆盖
         String uploadFileRet = cosClient.uploadFile(uploadFileRequest);
         logger.debug(uploadFileRet);
         ObjectUploadResult objectUploadResult = objectUploadResult(cloudPath, uploadFileRet);
         close();
-//        inToFile.delete();
+        // inToFile.delete();
         return objectUploadResult;
     }
+
     /**
      * 
      * 指定了名称的使用指定名称，未指定名称的使用uuid作为名称
@@ -173,27 +163,27 @@ public class COSClient implements ObjClient {
      * @param ext
      * @return
      */
-    private String formatPath(String cloudPath,String ext){
-        if(!cloudPath.startsWith("/")){
-            cloudPath = "/"+cloudPath;
+    private String formatPath(String cloudPath, String ext) {
+        if (!cloudPath.startsWith("/")) {
+            cloudPath = "/" + cloudPath;
         }
-        if(cloudPath.contains("."+ext)){
-            return this.index+cloudPath;
+        if (cloudPath.contains("." + ext)) {
+            return this.index + cloudPath;
         }
-        if(cloudPath.endsWith("/")){
-            return this.index+cloudPath+UUID.randomUUID().toString()+"."+ext;
-        }else{
-            return this.index+cloudPath+"/"+UUID.randomUUID().toString()+"."+ext;
+        if (cloudPath.endsWith("/")) {
+            return this.index + cloudPath + UUID.randomUUID().toString() + "." + ext;
+        } else {
+            return this.index + cloudPath + "/" + UUID.randomUUID().toString() + "." + ext;
         }
     }
-    
-    private String formatPathForFile(String cloudPath){
-        if(!cloudPath.startsWith("/")){
-            cloudPath = "/"+cloudPath;
+
+    private String formatPathForFile(String cloudPath) {
+        if (!cloudPath.startsWith("/")) {
+            cloudPath = "/" + cloudPath;
         }
         return cloudPath;
     }
-    
+
     @Override
     public ObjectUploadResult uploadImage(String cloudPath, String localPath, String ext) throws IOException {
         cloudPath = formatPath(cloudPath, ext);
@@ -247,7 +237,7 @@ public class COSClient implements ObjClient {
         InputStream fileInputStream = cosClient.getFileInputStream(getFileLocalRequest);
         close();
         return fileInputStream;
-        
+
     }
 
     @Override
@@ -276,25 +266,27 @@ public class COSClient implements ObjClient {
 
     private File ImageScale(File sourceImg, File targetImg, int width, int height) {
         return resizePng(sourceImg, targetImg, width, height, true);
-//        try {
-//            width = width * 2;
-//            Image image = ImageIO.read(sourceImg);
-//            int sorcewidth = image.getWidth(null);
-//            int height2 = image.getHeight(null);
-//            double d = (Double.valueOf(height2) / Double.valueOf(sorcewidth)) * Double.valueOf(width);
-//            height = (int) d;
-//            BufferedImage buffi = new BufferedImage(width / 2, height / 2, BufferedImage.TYPE_INT_RGB);
-//            Graphics g = buffi.getGraphics();
-//            g.drawImage(image, 0, 0, width / 2, height / 2, null);
-//            g.dispose();
-//            ImageIO.write(buffi, "PNG", targetImg);
-//            return targetImg;
-//        } catch (Exception e) {
-//            e.printStackTrace();
-//        }
-//        return null;
+        // try {
+        // width = width * 2;
+        // Image image = ImageIO.read(sourceImg);
+        // int sorcewidth = image.getWidth(null);
+        // int height2 = image.getHeight(null);
+        // double d = (Double.valueOf(height2) / Double.valueOf(sorcewidth)) *
+        // Double.valueOf(width);
+        // height = (int) d;
+        // BufferedImage buffi = new BufferedImage(width / 2, height / 2,
+        // BufferedImage.TYPE_INT_RGB);
+        // Graphics g = buffi.getGraphics();
+        // g.drawImage(image, 0, 0, width / 2, height / 2, null);
+        // g.dispose();
+        // ImageIO.write(buffi, "PNG", targetImg);
+        // return targetImg;
+        // } catch (Exception e) {
+        // e.printStackTrace();
+        // }
+        // return null;
     }
-    
+
     /**
      * 
      * 图片压缩，解决png背景变黑的问题
@@ -342,9 +334,6 @@ public class COSClient implements ObjClient {
         }
         return null;
     }
-    
-    
-    
 
     private ObjectUploadResult uploadSmallMiddleImage(File file, String cloudPath, int width, int height,
             String contentType) throws FileNotFoundException, IOException {
@@ -397,10 +386,10 @@ public class COSClient implements ObjClient {
             Image image = ImageIO.read(file);
             int width = image.getWidth(null);
             int height = image.getHeight(null);
-            ObjectUploadResult uploadSmallMiddleImage = uploadSmallMiddleImage(file, cloudPath + "_small."
-                    + ext.toString(), 160, 160, ext.toString());
-            ObjectUploadResult uploadSmallMiddleImage2 = uploadSmallMiddleImage(file, cloudPath + "_middle."
-                    + ext.toString(), 500, 500, ext.toString());
+            ObjectUploadResult uploadSmallMiddleImage = uploadSmallMiddleImage(file,
+                    cloudPath + "_small." + ext.toString(), 160, 160, ext.toString());
+            ObjectUploadResult uploadSmallMiddleImage2 = uploadSmallMiddleImage(file,
+                    cloudPath + "_middle." + ext.toString(), 500, 500, ext.toString());
             return imageUploadResult(cloudPath, ret, width, height, uploadSmallMiddleImage.getUrl(),
                     uploadSmallMiddleImage2.getUrl());
         }
@@ -450,39 +439,5 @@ public class COSClient implements ObjClient {
         close();
         return uploadImage;
     }
-    
-    
-    public static void main(String[] a) throws Exception{
-        COSClient client = new COSClient(null);
-        client.close();
-        ObjectUploadResult uploadImage = client.uploadObject("file/test/dd.jpg", "C:/Users/zhang/Pictures/Screenshots/333.png");
-        System.out.println(JSON.toJSONString(uploadImage));
-        
-//        COSClient client = new COSClient();
-//        InputStream inStream = client.getObject("/dev/20160424153321.jpg");
-//        File imageFile = null;
-//        try {
-//            ByteArrayOutputStream outStream = new ByteArrayOutputStream();
-//            byte[] buffer = new byte[1024];
-//            int len = 0;
-//            while ((len = inStream.read(buffer)) != -1) {
-//                outStream.write(buffer, 0, len);
-//            }
-//            inStream.close();
-//            byte[] data = outStream.toByteArray();
-//            imageFile = File.createTempFile(UUID.randomUUID().toString(), ".png");
-////          imageFile.deleteOnExit();
-//            FileOutputStream fileOutStream = new FileOutputStream(imageFile);
-//            fileOutStream.write(data);
-//            fileOutStream.flush();
-//            fileOutStream.close();
-//        } catch (Exception e) {
-//            e.printStackTrace();
-//        } finally {
-//            
-//        }
-        
-    }
-    
 
 }
