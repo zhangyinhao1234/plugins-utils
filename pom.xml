@@ -45,6 +45,7 @@
         <module>hibernate-query-plugin</module>
 		<module>wechat-plugin</module>
     <module>cloud-plugin</module>
+    <module>sms-plugin</module>
   </modules>
 
 	<build>
