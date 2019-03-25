@@ -80,5 +80,12 @@
 			<version>${httpclient.version}</version>
 		</dependency>
 
+		<dependency>
+			<groupId>net.coobird</groupId>
+			<artifactId>thumbnailator</artifactId>
+			<version>0.4.8</version>
+			<scope>Test</scope>
+		</dependency>
+
 	</dependencies>
 </project>
