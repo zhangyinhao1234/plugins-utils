@@ -5,8 +5,6 @@ import java.util.List;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.ApplicationContext;
 
 import com.binpo.plugin.sms.base.ISMSToolService;
 import com.binpo.plugin.sms.base.SMSSendParams;
@@ -14,7 +12,8 @@ import com.binpo.plugin.sms.base.SMSUtil;
 import com.binpo.plugin.sms.base.SMSUtil.SendCode;
 import com.binpo.plugin.sms.control.i.SMSConfig;
 import com.binpo.plugin.sms.control.i.SMSErrorInfoSend;
-import com.binpo.plugin.sms.control.i.SMSSaveContentToDB;
+import com.binpo.plugin.sms.control.i.SMSSaveContent;
+import com.binpo.plugin.sms.control.i.SMSSpringBeanUtil;
 
 /**
  * 短信调度中心， 短信调度中心和短信服务隔离
@@ -37,7 +36,7 @@ public class SMSControlCenterImpl implements SMSControlCenter {
     /**
      * 保存短信内容接口
      */
-    private SMSSaveContentToDB saveContentToDB;
+    private SMSSaveContent saveContentToDB;
     /**
      * 用于使用其他途径来获取实时的配置信息
      */
@@ -46,8 +45,10 @@ public class SMSControlCenterImpl implements SMSControlCenter {
      * 第三方错误日志发送接口
      */
     private SMSErrorInfoSend sendErrorInfo;
-    @Autowired(required = false)
-    private ApplicationContext context;
+    /**
+     * spring 上下文工具
+     */
+    private SMSSpringBeanUtil applicationContextUtil;
 
     private Log logger = LogFactory.getLog(this.getClass());
 
@@ -73,13 +74,6 @@ public class SMSControlCenterImpl implements SMSControlCenter {
             sendErrorInfo(error, errorBeans);
             updateSmsPriority(errorBeans);
         }
-        if (voiceinServer && params.getType().equals(ISMSToolService.Type.voice)) {
-            List<String> errorBeans = new ArrayList<>();
-            StringBuffer error = toSendSms(errorBeans, params);
-            saveSMSContentToDataBase(params, errorBeans.size());
-            sendErrorInfo(error, errorBeans);
-            updateSmsPriority(errorBeans);
-        }
     }
 
     private void loadsmsConfig() {
@@ -97,9 +91,9 @@ public class SMSControlCenterImpl implements SMSControlCenter {
         logger.debug("目标手机：" + params.getTelephone());
         logger.debug("短信内容：" + params.getContent());
         StringBuffer error = new StringBuffer();
-        if (context != null) {
+        if (applicationContextUtil != null) {
             for (String beanId : this.springSmsBeanIds) {
-                Object bean = context.getBean(beanId);
+                Object bean = applicationContextUtil.getBean(beanId);
                 if (bean == null) {
                     error.append("短信服务配置 spring bean 异常，找不到 id 为" + beanId + "的短信服务接口");
                     continue;
@@ -174,11 +168,11 @@ public class SMSControlCenterImpl implements SMSControlCenter {
         return true;
     }
 
-    public SMSSaveContentToDB getSaveContentToDB() {
+    public SMSSaveContent getSaveContentToDB() {
         return saveContentToDB;
     }
 
-    public void setSaveContentToDB(SMSSaveContentToDB saveContentToDB) {
+    public void setSaveContentToDB(SMSSaveContent saveContentToDB) {
         this.saveContentToDB = saveContentToDB;
     }
 
@@ -200,6 +194,10 @@ public class SMSControlCenterImpl implements SMSControlCenter {
 
     public void setSendErrorInfo(SMSErrorInfoSend sendErrorInfo) {
         this.sendErrorInfo = sendErrorInfo;
+    }
+
+    public void setApplicationContextUtil(SMSSpringBeanUtil applicationContextUtil) {
+        this.applicationContextUtil = applicationContextUtil;
     }
 
     public void setDefaultSpringids(String defaultSpringids) {

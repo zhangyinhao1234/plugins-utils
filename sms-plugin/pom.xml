@@ -38,6 +38,18 @@
 			<version>1.6.1</version>
 		</dependency>
 
+		<dependency>
+			<groupId>com.github.qcloudsms</groupId>
+			<artifactId>qcloudsms</artifactId>
+			<version>1.0.6</version>
+		</dependency>
+		
+		<dependency>
+			<groupId>com.alibaba</groupId>
+			<artifactId>fastjson</artifactId>
+			<version>1.2.8</version>
+		</dependency>
+
 
 		<dependency>
 			<groupId>junit</groupId>
