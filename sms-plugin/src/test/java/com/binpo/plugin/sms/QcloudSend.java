@@ -12,9 +12,9 @@ public class QcloudSend {
         try {
             //请根据实际 appid 和 appkey 进行开发，以下只作为演示 sdk 使用
             int appid = 1400032527;
-            String appkey = "5d9f372bebbb760cde3d5905fd31d6bb";
+            String appkey = "";
             
-            String phoneNumber1 = "15262516056";
+            String phoneNumber1 = "";
 //            String phoneNumber2 = "12345678902";
 //            String phoneNumber3 = "12345678903";
             int tmplId = 7839;
