@@ -24,3 +24,13 @@
 
 [代码示例](https://github.com/zhangyinhao1234/plugins-utils/tree/master/cloud-plugin)
 
+
+
+## sms-plugin
+
+​	发送短信的核心组件，默认实现了示远科技，大汉三通和腾讯云的短信发送。实现多供应商的短信接口，当有任何一方短信发送失败后会使用另外的短信平台发送短信。
+
+​	对扩展支持：如果想增加其他短信供应商，可以继承 AbstractSMSServer 抽象类。轻松替换/增加短息平台
+
+[代码示例](https://github.com/zhangyinhao1234/spring-boot-starter-sms)
+
