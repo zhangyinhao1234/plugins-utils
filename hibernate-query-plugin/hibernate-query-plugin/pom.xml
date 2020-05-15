@@ -42,7 +42,7 @@
 		<aspectjweaver.version>1.8.10</aspectjweaver.version>
 		<aopalliance.version>1.0</aopalliance.version>
 		<identity.version>0.0.1-SNAPSHOT</identity.version>
-		<jackson-databind.version>2.8.5</jackson-databind.version>
+		<jackson-databind.version>2.9.10.4</jackson-databind.version>
 	</properties>
 
 
