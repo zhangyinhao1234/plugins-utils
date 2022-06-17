@@ -30,7 +30,7 @@
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<spring.version>4.3.13.RELEASE</spring.version>
 		<commons-lang.version>2.5</commons-lang.version>
-		<fastjson.version>1.2.8</fastjson.version>
+		<fastjson.version>1.2.83</fastjson.version>
 		<druid.version>1.0.14</druid.version>
 		<mysql-connector-java.version>5.1.35</mysql-connector-java.version>
 		<slf4j-api.version>1.6.4</slf4j-api.version>
