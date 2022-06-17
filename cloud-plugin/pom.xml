@@ -25,7 +25,7 @@
 		<java.version>1.8</java.version>
 
 		<com.qcloud.version>4.6</com.qcloud.version>
-		<fastjson.version>1.2.8</fastjson.version>
+		<fastjson.version>1.2.83</fastjson.version>
 		<aws-java-sdk.version>1.11.335</aws-java-sdk.version>
 		<joda-time.version>2.9.6</joda-time.version>
 		<jackson-databind.version>2.8.5</jackson-databind.version>
