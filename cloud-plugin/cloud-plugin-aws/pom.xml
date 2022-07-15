@@ -17,7 +17,7 @@
 		<protobuf-java.version>2.5.0</protobuf-java.version>
 		<spring.version>4.3.13.RELEASE</spring.version>
 		<httpclient.version>4.5.3</httpclient.version>
-		<awsjavasdk.version>1.11.125</awsjavasdk.version>
+		<awsjavasdk.version>1.12.261</awsjavasdk.version>
 	</properties>
 	<dependencies>
 
