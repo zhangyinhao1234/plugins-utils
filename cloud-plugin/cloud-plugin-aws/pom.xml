@@ -14,7 +14,7 @@
 	<url>http://maven.apache.org</url>
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-		<protobuf-java.version>2.5.0</protobuf-java.version>
+		<protobuf-java.version>3.16.3</protobuf-java.version>
 		<spring.version>4.3.13.RELEASE</spring.version>
 		<httpclient.version>4.5.3</httpclient.version>
 		<awsjavasdk.version>1.11.125</awsjavasdk.version>
